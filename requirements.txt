@@ -1,0 +1,6 @@
+azure-ai-agents
+azure-ai-ml
+azure-ai-resources
+azure-ai-projects
+azure-identity
+aiohttp
