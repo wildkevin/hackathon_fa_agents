@@ -2,7 +2,7 @@
 # Generated from main dependencies in pyproject.toml
 
 # Core Framework
-semantic-kernel>=1.33.0
+semantic-kernel==1.34.0
 
 # Azure AI Services
 azure-ai-projects>=1.0.0b11
