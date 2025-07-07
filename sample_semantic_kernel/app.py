@@ -130,9 +130,6 @@ async def main():
             # Load all predefined agents
             agents = await get_agents(kernel, settings, client)
 
-            print(len(agents))
-            print("AAAAAAA")
-
             # Create group chat with built-in orchestration
             chat_completion_service = AzureChatCompletion(
                 deployment_name=os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4o"), 
@@ -140,8 +137,6 @@ async def main():
                 endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT")
             )
 
-            print(chat_completion_service.ai_model_type)
-            print("BBBBBBBBBBB")
             manager = StandardMagenticManager(chat_completion_service=chat_completion_service)
 
             magentic_orchestration = MagenticOrchestration(
