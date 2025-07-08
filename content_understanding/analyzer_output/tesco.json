@@ -1,0 +1,374 @@
+[
+	{
+		"Metric": "Total_Assets",
+		"2022": "48,983",
+		"2023": "46,132",
+		"2024": null
+	},
+	{
+		"Metric": "Current_Assets",
+		"2022": "547",
+		"2023": "12,515",
+		"2024": null
+	},
+	{
+		"Metric": "Inventory",
+		"2022": "2,339",
+		"2023": "2,510",
+		"2024": "2,632"
+	},
+	{
+		"Metric": "Cash",
+		"2022": "2,345",
+		"2023": "2,465",
+		"2024": "346"
+	},
+	{
+		"Metric": "Marketable_Securities",
+		"2022": "2,076",
+		"2023": "1,628",
+		"2024": "889"
+	},
+	{
+		"Metric": "Accounts_Receivable",
+		"2022": "1,263",
+		"2023": "1,315",
+		"2024": "576"
+	},
+	{
+		"Metric": "Accounts_Payable",
+		"2022": "9,234",
+		"2023": "9,818",
+		"2024": "(81)"
+	},
+	{
+		"Metric": "Total_Liabilities",
+		"2022": "33,693",
+		"2023": "33,888",
+		"2024": null
+	},
+	{
+		"Metric": "Current_Liabilities",
+		"2022": "9,181",
+		"2023": "9,818",
+		"2024": null
+	},
+	{
+		"Metric": "Total_Debt",
+		"2022": "7,399",
+		"2023": "7,351",
+		"2024": "(7,219)"
+	},
+	{
+		"Metric": "Shareholders_Equity",
+		"2022": "14,695",
+		"2023": "12,230",
+		"2024": null
+	},
+	{
+		"Metric": "Revenue_a_k_a_Sales",
+		"2022": "61,344",
+		"2023": "65,762",
+		"2024": "£68,187m"
+	},
+	{
+		"Metric": "Cost_of_Goods_Sold_COGS",
+		"2022": "45,136",
+		"2023": "48,822",
+		"2024": "(62,836)"
+	},
+	{
+		"Metric": "Operating_Income_EBIT",
+		"2022": "2,560",
+		"2023": "2,509",
+		"2024": "2,821"
+	},
+	{
+		"Metric": "EBITDA",
+		"2022": null,
+		"2023": "4,057",
+		"2024": "4,362"
+	},
+	{
+		"Metric": "Net_Income",
+		"2022": "1,483",
+		"2023": "2,064",
+		"2024": "1,192"
+	},
+	{
+		"Metric": "Operating_Expenses_and_sub_items_SG_A_Advertising_R_D",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Interest_Expense",
+		"2022": "650",
+		"2023": "373",
+		"2024": "373"
+	},
+	{
+		"Metric": "Interest_Income",
+		"2022": "9",
+		"2023": "85",
+		"2024": "94"
+	},
+	{
+		"Metric": "Lease_Expense",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Depreciation",
+		"2022": "£1,577m",
+		"2023": "1,700",
+		"2024": "899"
+	},
+	{
+		"Metric": "Amortization",
+		"2022": null,
+		"2023": "278",
+		"2024": "280"
+	},
+	{
+		"Metric": "Capital_Expenditures_Capex",
+		"2022": "£1.1bn",
+		"2023": "1,235",
+		"2024": "1,314"
+	},
+	{
+		"Metric": "Operating_Cash_Flow",
+		"2022": "£4.5bn",
+		"2023": "3,722",
+		"2024": "162"
+	},
+	{
+		"Metric": "Net_Patient_Revenue",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Net_Operating_Income_NOI",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Rental_Revenue",
+		"2022": "90",
+		"2023": "90",
+		"2024": "96"
+	},
+	{
+		"Metric": "Order_Backlog",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Work_in_Progress",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Total_Contract_Value",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Retention_Receivables",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Contract_Revenue",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Reserves_Added",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Reserves_Extracted_Produced",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Total_Production",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Production_Transport_Costs",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Barrels_Produced",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Loan_Amount",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Collateral_Value_Property_Value",
+		"2022": null,
+		"2023": null,
+		"2024": "£16.9bn"
+	},
+	{
+		"Metric": "Debt_Service_Principal_Interest_Payments",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Annual_Admissions",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Average_Number_of_Beds",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Operating_Expenses_ex_Depreciation",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Earning_Assets",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Average_Earning_Assets",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Loan_Loss_Provisions",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Total_Loans",
+		"2022": "6,490",
+		"2023": "7,081",
+		"2024": null
+	},
+	{
+		"Metric": "Leased_Space",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Total_Available_Space",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Average_Subscribers",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Total_Service_Revenue",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Subscribers_at_Start_End_of_Period",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Customers_at_Start_End_of_Period",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Annual_Recurring_Revenue_ARR",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Number_of_Transactions",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Foot_Traffic",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Sales_for_Stores_Open_gt_1_Year",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Physical_Inventory_Count",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Recorded_Inventory",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Number_of_Drug_Trials_Total_and_Successful",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Sales_from_Patent_Protected_Drugs",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	},
+	{
+		"Metric": "Market_Value_of_Equity_MVE",
+		"2022": null,
+		"2023": null,
+		"2024": null
+	}
+]

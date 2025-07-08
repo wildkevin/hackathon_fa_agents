@@ -1,0 +1,317 @@
+{  
+  "fieldSchema": {  
+    "fields": {  
+      "Total_Assets": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Sum of everything a company owns of value (current and non-current), as shown on the balance sheet."  
+      },  
+      "Current_Assets": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Assets expected to be converted into cash or used up within one year (e.g., cash, inventory, receivables)."  
+      },  
+      "Inventory": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Value of goods held for sale or production at the reporting date."  
+      },  
+      "Cash": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Money in cash or checking accounts immediately available for use."  
+      },  
+      "Marketable_Securities": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Short-term investments that are easily converted to cash (e.g., treasury bills)."  
+      },  
+      "Accounts_Receivable": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Money owed to the company by customers for goods/services delivered but not yet paid for."  
+      },  
+      "Accounts_Payable": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Amounts owed to suppliers or vendors for goods/services received but not yet paid."  
+      },  
+      "Total_Liabilities": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "All debts and obligations owed to others, both short- and long-term."  
+      },  
+      "Current_Liabilities": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Obligations due to be settled within one year."  
+      },  
+      "Total_Debt": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Sum of all interest-bearing debt, short-term and long-term."  
+      },  
+      "Shareholders_Equity": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Owners’ residual interest in the company’s assets after liabilities are paid."  
+      },  
+      "Revenue_a_k_a_Sales": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total income from normal business operations before expenses."  
+      },  
+      "Cost_of_Goods_Sold_COGS": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Direct costs to produce goods or services sold (materials, labor, etc.)."  
+      },  
+      "Operating_Income_EBIT": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Profit from normal business operations, before interest and taxes."  
+      },  
+      "EBITDA": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Earnings before Interest, Taxes, Depreciation, and Amortization; measures pure operating performance."  
+      },  
+      "Net_Income": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "The company’s profit after all expenses, taxes, and non-operating items."  
+      },  
+      "Operating_Expenses_and_sub_items_SG_A_Advertising_R_D": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Day-to-day expenses not directly tied to production or sales (includes Selling, General & Admin, Advertising, Research & Development)."  
+      },  
+      "Interest_Expense": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Cost incurred from borrowing money."  
+      },  
+      "Interest_Income": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Income earned from lending or investing in interest-bearing assets."  
+      },  
+      "Lease_Expense": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Payments recognized for using leased property or equipment."  
+      },  
+      "Depreciation": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Allocation of a tangible asset’s cost over its useful life."  
+      },  
+      "Amortization": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Allocation of an intangible asset’s cost over its expected life."  
+      },  
+      "Capital_Expenditures_Capex": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Spending on acquiring or maintaining fixed assets, like equipment or buildings."  
+      },  
+      "Operating_Cash_Flow": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Cash generated from normal business operations."  
+      },  
+      "Net_Patient_Revenue": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Gross patient revenue minus adjustments and discounts (used in healthcare)."  
+      },  
+      "Net_Operating_Income_NOI": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Income from property operations after expenses, but before interest and taxes (real estate)."  
+      },  
+      "Rental_Revenue": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Income from leasing out property/facilities."  
+      },  
+      "Order_Backlog": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Value of all confirmed customer orders not yet fulfilled."  
+      },  
+      "Work_in_Progress": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Value of partially completed goods or projects."  
+      },  
+      "Total_Contract_Value": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Aggregate value of a customer contract (especially in project-based businesses)."  
+      },  
+      "Retention_Receivables": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Amounts held back (not paid yet) by clients as retention on contracts (construction)."  
+      },  
+      "Contract_Revenue": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total revenue recognized from contracts."  
+      },  
+      "Reserves_Added": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Newly discovered or acquired energy reserves (oil/gas)."  
+      },  
+      "Reserves_Extracted_Produced": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Amount of reserves produced/used during a period (oil/gas)."  
+      },  
+      "Total_Production": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total output of goods or resources in a given period (often used in oil/gas)."  
+      },  
+      "Production_Transport_Costs": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Expenses incurred to move produced goods/resources to market."  
+      },  
+      "Barrels_Produced": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Number of oil barrels (or equivalent unit) produced during the period."  
+      },  
+      "Loan_Amount": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Principal borrowed, outstanding at a given time."  
+      },  
+      "Collateral_Value_Property_Value": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Market value of assets pledged as security for loans."  
+      },  
+      "Debt_Service_Principal_Interest_Payments": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total scheduled loan repayments, including both principal and interest."  
+      },  
+      "Annual_Admissions": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Number of patients admitted to a facility in a year (healthcare)."  
+      },  
+      "Average_Number_of_Beds": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Mean number of licensed or staffed beds available (hospitals)."  
+      },  
+      "Operating_Expenses_ex_Depreciation": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "All operating costs, excluding depreciation and sometimes other non-cash items."  
+      },  
+      "Earning_Assets": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Assets generating income, typically in banking (e.g., loans, investments)."  
+      },  
+      "Average_Earning_Assets": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Mean value of assets during the period that generate income."  
+      },  
+      "Loan_Loss_Provisions": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Expected credit losses set aside for bad loans (banking)."  
+      },  
+      "Total_Loans": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total value of loans held by a financial institution."  
+      },  
+      "Leased_Space": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total amount of property (e.g., square feet/meters) currently leased to tenants."  
+      },  
+      "Total_Available_Space": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total space that is rentable or available for lease."  
+      },  
+      "Average_Subscribers": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Mean monthly or period count of active subscribers (telecom/software)."  
+      },  
+      "Total_Service_Revenue": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total revenue from providing services to customers."  
+      },  
+      "Subscribers_at_Start_End_of_Period": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Number of subscribers/customers at the beginning and end of a period."  
+      },  
+      "Customers_at_Start_End_of_Period": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Number of customers at the beginning and end of a period."  
+      },  
+      "Annual_Recurring_Revenue_ARR": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Annualized value of recurring revenue (typically in SaaS/subscription businesses)."  
+      },  
+      "Number_of_Transactions": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total sales or purchase transactions over a period."  
+      },  
+      "Foot_Traffic": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Number of people entering a retail location."  
+      },  
+      "Sales_for_Stores_Open_gt_1_Year": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Revenue from stores that have been open more than a year; used to measure 'same-store' performance."  
+      },  
+      "Physical_Inventory_Count": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Actual inventory counted physically on hand."  
+      },  
+      "Recorded_Inventory": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Inventory balance according to the company’s records or books."  
+      },  
+      "Number_of_Drug_Trials_Total_and_Successful": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Number of pharmaceutical trials started and the number completed with positive results."  
+      },  
+      "Sales_from_Patent_Protected_Drugs": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Revenue generated from products under patent protection (pharma)."  
+      },  
+      "Market_Value_of_Equity_MVE": {  
+        "type": "string",  
+        "method": "generate",  
+        "description": "Total market capitalization: share price times number of outstanding shares."  
+      }  
+    },  
+    "definitions": {}  
+  }  
+}
