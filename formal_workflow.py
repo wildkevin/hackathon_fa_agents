@@ -53,33 +53,83 @@ async def get_agents(kernel: Kernel, settings: AzureAIAgentSettings, client: obj
         list: List of initialized agents
     """
 
-    # Sector Retrieval Agent
-    agent_id = ""
-    rag_agent = await client.agents.get_agent(agent_id)
+    # 方法1：通过AzureAIAgentSettings设置agent_id
+    rag_agent_settings = AzureAIAgentSettings(
+        model_deployment_name=settings.model_deployment_name,
+        endpoint=settings.endpoint,
+        agent_id="asst_pX3PqWDGsFvZ7bZvLkqh3Q3a"
+    )
+    agent_id = "asst_pX3PqWDGsFvZ7bZvLkqh3Q3a"
+    rag_agent_instance = await client.agents.get_agent(agent_id)
+    rag_agent_instance.description = "An Agent to answer to questions based on the company information"
+    rag_agent = AzureAIAgent(
+        kernel=kernel,
+        settings=rag_agent_settings,
+        client=client,
+        name="RAG_Agent",
+        definition=rag_agent_instance,
+        instructions="An Agent to answer questions based on company information"
+    )
     print(f"✅ Initialized RAG Agent agent")
-
-    # Metric Retrieval Analyst
+    
+    # 类似地创建其他agents
+    metric_settings = AzureAIAgentSettings(
+        model_deployment_name=settings.model_deployment_name,
+        endpoint=settings.endpoint,
+        agent_id="asst_v6rsuv5M4G26vKwD1Cio6cOd"
+    )
     agent_id = "asst_v6rsuv5M4G26vKwD1Cio6cOd"
-    metric_retrieval_analyst = await client.agents.get_agent(agent_id)
+    metric_retrieval_analyst_instance = await client.agents.get_agent(agent_id)
+    metric_retrieval_analyst_instance.description = "An Agent to retrieve metrics from the company information"
+    metric_retrieval_analyst = AzureAIAgent(
+        kernel=kernel,
+        settings=metric_settings,
+        client=client,
+        name="Metric_Retrieval_Analyst",
+        definition=metric_retrieval_analyst_instance,
+        instructions="An Agent to retrieve metrics from company information"
+    )
     print(f"✅ Initialized Metric Retrieval Analyst agent")
 
-    # Formula Provider
+    formula_provider_settings = AzureAIAgentSettings(
+        model_deployment_name=settings.model_deployment_name,
+        endpoint=settings.endpoint,
+        agent_id="asst_62cjkb6GOd6ryvTcFtlcM3EQ"
+    )
     agent_id = "asst_62cjkb6GOd6ryvTcFtlcM3EQ"
-    formula_provider = await client.agents.get_agent(agent_id)
+    formula_provider_instance = await client.agents.get_agent(agent_id)
+    formula_provider_instance.description = "An Agent to provide formulas and variable names. And calculate the values of the formulas once the value of the variable are provided"
+    formula_provider = AzureAIAgent(
+        kernel=kernel,
+        settings=formula_provider_settings,
+        client=client,
+        name="Formula_Provider",
+        definition=formula_provider_instance,
+        instructions="An Agent to provide formulas and variable names. And calculate the values of the formulas once the value of the variable are provided"
+    )
     print(f"✅ Initialized Formula Provider agent")
 
-    # YoY Analyst
+    yoy_analyst_settings = AzureAIAgentSettings(
+        model_deployment_name=settings.model_deployment_name,
+        endpoint=settings.endpoint,
+        agent_id="asst_SboKcNFaQnkxS6k6mDj3GcGT"
+    )
     agent_id = "asst_SboKcNFaQnkxS6k6mDj3GcGT"
-    yoy_analyst = await client.agents.get_agent(agent_id)
+    yoy_analyst_instance = await client.agents.get_agent(agent_id)
+    yoy_analyst_instance.description = "An Agent to calculate the year-over-year (YoY) analysis of the metrics"
+    yoy_analyst = AzureAIAgent(
+        kernel=kernel,
+        settings=yoy_analyst_settings,
+        client=client,
+        name="YoY_Analyst",
+        definition=yoy_analyst_instance,
+        instructions="An Agent to calculate the year-over-year (YoY) analysis of the metrics"
+    )
     print(f"✅ Initialized YoY Analyst agent")
 
 
-    return [
-        # rag_agent,
-        metric_retrieval_analyst,
-        formula_provider,
-        yoy_analyst
-    ]
+    return [rag_agent, metric_retrieval_analyst, formula_provider, yoy_analyst]
+
 
 async def main():
     """Main function to run the agents."""
