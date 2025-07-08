@@ -47,15 +47,15 @@ async def main() -> None:
         agent = await agents_client.create_agent(
             model=os.environ["MODEL_DEPLOYMENT_NAME"], name="my-agent", instructions="You are helpful agent"
         )
-        print(f"Created agent, agent ID: {agent.id}")
+        print(f"Created agent, agent ID: asst_62cjkb6GOd6ryvTcFtlcM3EQ")
 
         thread = await agents_client.threads.create()
         print(f"Created thread, thread ID: {thread.id}")
 
-        message = await agents_client.messages.create(thread_id=thread.id, role="user", content="Hello, tell me a joke")
+        message = await agents_client.messages.create(thread_id=thread.id, role="user", content="give me the formula of Piotroski F-Score")
         print(f"Created message, message ID: {message.id}")
 
-        run = await agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
+        run = await agents_client.runs.create(thread_id=thread.id, agent_id="asst_62cjkb6GOd6ryvTcFtlcM3EQ")
 
         # Poll the run as long as run status is queued or in progress
         while run.status in ["queued", "in_progress", "requires_action"]:
