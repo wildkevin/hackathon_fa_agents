@@ -15,12 +15,13 @@ print(f"Created thread, ID: {thread.id}")
 message = project.agents.messages.create(
     thread_id=thread.id,
     role="user",
-    content="what's the revenue of Tesco in 2024?"
+    content="what is the industry sector for Tesco"
 )
 
 run = project.agents.runs.create_and_process(
     thread_id=thread.id,
-    agent_id=agent.id)
+    agent_id=agent.id,
+    additional_instructions="use the azure_index_browser tool")
 
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
