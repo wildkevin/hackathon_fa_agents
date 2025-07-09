@@ -243,7 +243,15 @@ async def main():
     ):
         try:
             kernel = Kernel()
-        
+            
+            # Import and register plugins
+            from tools.calculator import CalculatorPlugin
+            from tools.yoy_calculator import YoYCalculatorPlugin
+            
+            # Add plugins to kernel
+            kernel.add_plugin(CalculatorPlugin(), plugin_name="calculator")
+            kernel.add_plugin(YoYCalculatorPlugin(), plugin_name="yoy_calculator")
+            print("✅ Registered calculator and yoy_calculator plugins to kernel")
 
             settings = AzureAIAgentSettings(
                 model_deployment_name=os.environ.get("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME", ""))

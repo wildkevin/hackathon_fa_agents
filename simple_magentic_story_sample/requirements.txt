@@ -1,0 +1,19 @@
+# Core Semantic Kernel dependencies
+semantic-kernel>=1.0.0
+
+# Azure dependencies
+azure-identity>=1.15.0
+azure-ai-agents>=1.0.0
+
+# OpenAI dependencies
+openai>=1.0.0
+
+# Environment management
+python-dotenv>=1.0.0
+
+# Async support
+aiohttp>=3.8.0
+aiofiles>=23.0.0
+
+# Optional: For enhanced logging and debugging
+rich>=13.0.0

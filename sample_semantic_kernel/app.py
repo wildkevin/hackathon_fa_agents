@@ -41,6 +41,7 @@ def streaming_agent_response_callback(message: StreamingChatMessageContent, is_f
 def agent_response_callback(message: ChatMessageContent) -> None:
     print(f"**{message.name}**\n{message.content}")
 
+
 async def get_agents(kernel: Kernel, settings: AzureAIAgentSettings, client: object) -> list[Agent]:
     """Create and return all agents for the financial analysis workflow.
     
@@ -62,36 +63,20 @@ async def get_agents(kernel: Kernel, settings: AzureAIAgentSettings, client: obj
         filename="tesco_ar25_interactive.pdf"
     )
     # Initialize Financial Data Analyst
-    financial_data_analyst = await AgentRegistry.create_from_file(
-        f"src/agents/declarative/financial_data_analyst.yaml",
-        kernel=kernel,
-        settings=settings,
-        client=client,
-        extras={
-            "statement": fin_statement_file.id
-        }
-    )
+    agent_id = "asst_ipFTxiSvUAUIJTyv1MFhkPI8"
+    financial_data_analyst = await client.agents.get_agent(agent_id)
+
     print(f"✅ Initialized Financial Data Analyst agent")
     
     # Initialize Financial Data Analysis Reviewer
-    financial_data_analysis_reviewer = await AgentRegistry.create_from_file(
-        f"src/agents/declarative/financial_data_analysis_reviewer.yaml",
-        kernel=kernel,
-        settings=settings,
-        client=client,
-    )
+    agent_id = "asst_DD8HFZu4NsZossQ4jTvNtuC1"
+    financial_data_analysis_reviewer = await client.agents.get_agent(agent_id)
     print(f"✅ Initialized Financial Data Analysis Reviewer agent")
     
     # Initialize Market Intelligence Agent
-    market_intelligence = await AgentRegistry.create_from_file(
-        f"src/agents/declarative/market_intelligence.yaml",
-        kernel=kernel,
-        settings=settings,
-        client=client,
-        extras={
-            "BingGroundingConnectionName": os.environ.get("BING_GROUNDING_CONNECTION_ID")
-        }
-    )
+    agent_id = "asst_gPsbkOWwV9JUmzC6wYPfQ3ih"
+    market_intelligence  = await client.agents.get_agent(agent_id)
+
     print(f"✅ Initialized Market Intelligence agent")
     
     # Initialize Market Intelligence Reviewer
@@ -101,14 +86,23 @@ async def get_agents(kernel: Kernel, settings: AzureAIAgentSettings, client: obj
         settings=settings,
         client=client,
     )
+
     print(f"✅ Initialized Market Intelligence Reviewer agent")
+
+    # agent_id = "asst_7Pqcv3801IOoXGrNBxqITmb3"
+    # test_get_existing_agent = await client.agents.get_agent(agent_id)
+    # print(f"✅ Initialized test_get_existing_agent")
+
+
 
     return [
         financial_data_analyst,
         financial_data_analysis_reviewer,
         market_intelligence,
-        market_intelligence_reviewer
+        market_intelligence_reviewer,
+        # test_get_existing_agent
     ]
+
 
 async def main():
     """Main function to run the agents."""

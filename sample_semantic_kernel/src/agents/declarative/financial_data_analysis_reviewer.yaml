@@ -16,7 +16,7 @@ instructions: |
   7. Ensure the final output is structured JSON with all required fields
   
   When all requirements are met, respondwith clear statement that the analysis is complete and valid.
-
+ 
 model:
   id: ${AzureAI:ChatModelId}
   options:
