@@ -12,7 +12,6 @@ def calculator(
     This function safely evaluates mathematical expressions including:
     - Basic arithmetic: +, -, *, /, **
     - Mathematical constants: pi, e
-    - Functions: sin, cos, tan, log, sqrt, etc.
     
     :param expressions (Union[str, List[str]]): A mathematical expression or list of mathematical expressions to be evaluated.
                    Examples: "2 + 2", ["2 + 2", "3 * 4"], "37593 * 67"
@@ -30,9 +29,6 @@ def calculator(
         
         >>> calculator("37593 * 67")
         '37593 * 67 = 2518731.00'
-        
-        >>> calculator("sin(pi/2)")
-        'sin(pi/2) = 1.00'
     """
     # Convert single string to list for consistent processing
     if isinstance(expressions, str):
@@ -54,7 +50,7 @@ def calculator(
                     numexpr.evaluate(
                         expression_clean,
                         global_dict={},  # Restrict access to globals for security
-                        local_dict=local_dict  # Add mathematical functions and constants
+                        local_dict=local_dict  # Add mathematical constants
                     ), '.2f'
                 )
             )
