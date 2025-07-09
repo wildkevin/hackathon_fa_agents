@@ -12,6 +12,7 @@ import logging
 import sys
 from pathlib import Path
 from typing import Dict, Any
+import uuid
 
 from azure.ai.projects import AIProjectClient
 from azure.ai.agents.models import (
@@ -33,6 +34,13 @@ def setup_logging() -> None:
             logging.FileHandler('agent_creation.log')
         ]
     )
+    
+    # Suppress verbose HTTP request logs from Azure SDK
+    logging.getLogger('azure.identity').setLevel(logging.WARNING)
+    logging.getLogger('azure.core.pipeline.policies.http_logging_policy').setLevel(logging.WARNING)
+    logging.getLogger('azure.core.pipeline.transport').setLevel(logging.WARNING)
+    logging.getLogger('azure.core.rest').setLevel(logging.WARNING)
+    logging.getLogger('azure.ai.projects').setLevel(logging.WARNING)
 
 
 def get_file_paths() -> str:
@@ -97,7 +105,7 @@ def create_agent(agents_client, agent_config: Dict[str, Any]) -> str:
         # Create agent
         agent = agents_client.create_agent(
             model=os.environ["MODEL_DEPLOYMENT_NAME"],
-            name=agent_config["name"],
+            name=f"{agent_config['name']}-{uuid.uuid4()}",
             instructions=agent_config["instructions"],
             description=agent_config["description"],
             temperature=agent_config["temperature"],
