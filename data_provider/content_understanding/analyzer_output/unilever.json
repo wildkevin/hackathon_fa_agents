@@ -1,0 +1,374 @@
+[
+    {
+        "Metric": "Total_Assets",
+        "2022": "77,821",
+        "2023": "75,266",
+        "2024": "90,110"
+    },
+    {
+        "Metric": "Current_Assets",
+        "2022": "19,157",
+        "2023": "17,902",
+        "2024": "19,194"
+    },
+    {
+        "Metric": "Inventory",
+        "2022": "5,931",
+        "2023": "5,119",
+        "2024": "5,177"
+    },
+    {
+        "Metric": "Cash",
+        "2022": "4,326",
+        "2023": "4,159",
+        "2024": "6,136"
+    },
+    {
+        "Metric": "Marketable_Securities",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Accounts_Receivable",
+        "2022": "7,056",
+        "2023": "5,775",
+        "2024": "6,011"
+    },
+    {
+        "Metric": "Accounts_Payable",
+        "2022": "11,100",
+        "2023": "16,857",
+        "2024": "10,258"
+    },
+    {
+        "Metric": "Total_Liabilities",
+        "2022": "56,120",
+        "2023": "54,502",
+        "2024": "57,195"
+    },
+    {
+        "Metric": "Current_Liabilities",
+        "2022": "25,427",
+        "2023": "23,507",
+        "2024": "25,234"
+    },
+    {
+        "Metric": "Total_Debt",
+        "2022": null,
+        "2023": "29,622",
+        "2024": "28,648"
+    },
+    {
+        "Metric": "Shareholders_Equity",
+        "2022": "19,021",
+        "2023": "66,755",
+        "2024": "84,318"
+    },
+    {
+        "Metric": "Revenue_a_k_a_Sales",
+        "2022": "60,073",
+        "2023": "59,604",
+        "2024": "60,761"
+    },
+    {
+        "Metric": "Cost_of_Goods_Sold_COGS",
+        "2022": "35,906",
+        "2023": "34,429",
+        "2024": null
+    },
+    {
+        "Metric": "Operating_Income_EBIT",
+        "2022": "10,755",
+        "2023": "9,758",
+        "2024": "9,400"
+    },
+    {
+        "Metric": "EBITDA",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Net_Income",
+        "2022": "8,269",
+        "2023": "7,140",
+        "2024": "12,974"
+    },
+    {
+        "Metric": "Operating_Expenses_and_sub_items_SG_A_Advertising_R_D",
+        "2022": null,
+        "2023": "15,244",
+        "2024": null
+    },
+    {
+        "Metric": "Interest_Expense",
+        "2022": "811",
+        "2023": "1,038",
+        "2024": "1,085"
+    },
+    {
+        "Metric": "Interest_Income",
+        "2022": "281",
+        "2023": "442",
+        "2024": "86"
+    },
+    {
+        "Metric": "Lease_Expense",
+        "2022": "179",
+        "2023": "72",
+        "2024": "458"
+    },
+    {
+        "Metric": "Depreciation",
+        "2022": "1,946",
+        "2023": "1,579",
+        "2024": "1,005"
+    },
+    {
+        "Metric": "Amortization",
+        "2022": "455",
+        "2023": "228",
+        "2024": null
+    },
+    {
+        "Metric": "Capital_Expenditures_Capex",
+        "2022": "1,627",
+        "2023": "1,703",
+        "2024": "1,738"
+    },
+    {
+        "Metric": "Operating_Cash_Flow",
+        "2022": "10,089",
+        "2023": "11,561",
+        "2024": "12,144"
+    },
+    {
+        "Metric": "Net_Patient_Revenue",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Net_Operating_Income_NOI",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Rental_Revenue",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Order_Backlog",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Work_in_Progress",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Total_Contract_Value",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Retention_Receivables",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Contract_Revenue",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Reserves_Added",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Reserves_Extracted_Produced",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Total_Production",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Production_Transport_Costs",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Barrels_Produced",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Loan_Amount",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Collateral_Value_Property_Value",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Debt_Service_Principal_Interest_Payments",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Annual_Admissions",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Average_Number_of_Beds",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Operating_Expenses_ex_Depreciation",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Earning_Assets",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Average_Earning_Assets",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Loan_Loss_Provisions",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Total_Loans",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Leased_Space",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Total_Available_Space",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Average_Subscribers",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Total_Service_Revenue",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Subscribers_at_Start_End_of_Period",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Customers_at_Start_End_of_Period",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Annual_Recurring_Revenue_ARR",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Number_of_Transactions",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Foot_Traffic",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Sales_for_Stores_Open_gt_1_Year",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Physical_Inventory_Count",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Recorded_Inventory",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Number_of_Drug_Trials_Total_and_Successful",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Sales_from_Patent_Protected_Drugs",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    },
+    {
+        "Metric": "Market_Value_of_Equity_MVE",
+        "2022": null,
+        "2023": null,
+        "2024": null
+    }
+]
