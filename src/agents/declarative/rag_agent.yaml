@@ -1,0 +1,15 @@
+type: foundry_agent
+name: RAG_Agent
+description: This agent is a Rag Agent that find the sector of the company, and identify root causes for the changes of the metrics in the YoY process.
+instructions: |
+  This agent is a Rag Agent that find the sector of the company, and identify root causes for the changes of the metrics in the YoY process.
+tools:
+  - type: function
+    function:
+      name: retrieve_doc
+
+
+model:
+  id: ${AzureAI:ChatModelId}
+  options:
+    temperature: 0.1

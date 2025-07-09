@@ -1,0 +1,15 @@
+type: foundry_agent
+name: Report_formating_agent
+description: This agent is to generate a Financial Analysis Report in a required format based on the result from different analysis processes.
+instructions: |
+    Format the result from the Formula Analysis Process and YoY Analysis Process and generate a Financial Analysis Report
+tools:
+  - type: function
+    function:
+      name: retrieve_doc
+
+
+model:
+  id: ${AzureAI:ChatModelId}
+  options:
+    temperature: 0.1
