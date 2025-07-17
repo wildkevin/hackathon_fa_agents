@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Report - {{ name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.10/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <style>
+        .report-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .report-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        .report-body {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .report-body h1 {
+            color: #363636;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .report-body h2 {
+            color: #4a4a4a;
+            border-bottom: 2px solid #dbdbdb;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .report-body h3 {
+            color: #5a5a5a;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        .report-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .report-body table th,
+        .report-body table td {
+            border: 1px solid #dbdbdb;
+            padding: 12px;
+            text-align: left;
+        }
+        .report-body table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+        .report-body table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        .report-body ul, .report-body ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        .report-body li {
+            margin-bottom: 5px;
+        }
+        .report-body code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .report-body pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .report-body blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .print-button {
+            margin-right: 10px;
+        }
+        @media print {
+            .action-buttons {
+                display: none;
+            }
+            .report-header {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="action-buttons">
+        <button onclick="window.print()" class="button is-info print-button">
+            <span class="icon">
+                <i class="fas fa-print"></i>
+            </span>
+            <span>Print</span>
+        </button>
+        <button onclick="window.close()" class="button is-light">
+            <span class="icon">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>Close</span>
+        </button>
+    </div>
+
+    <div class="report-header">
+        <div class="container">
+            <h1 class="title is-2">Financial Analysis Report</h1>
+            <h2 class="subtitle is-4">{{ name }}</h2>
+            <p class="subtitle is-6">Generated on {{ current_time }}</p>
+        </div>
+    </div>
+
+    <div class="report-content">
+        <div class="report-body">
+            <div id="markdown-content">
+                {{ content | safe }}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add table classes for better styling
+        document.querySelectorAll('table').forEach(table => {
+            table.classList.add('table', 'is-striped', 'is-hoverable');
+        });
+    </script>
+</body>
+</html>

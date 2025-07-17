@@ -21,6 +21,10 @@ from azure.ai.agents.models import (
 )
 from azure.identity import DefaultAzureCredential
 from azure.core.exceptions import AzureError
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 
 def setup_logging() -> None:
