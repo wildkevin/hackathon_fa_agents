@@ -220,6 +220,11 @@ def download_report(report_name):
     
     return send_file(report_path, as_attachment=True)
 
+@app.route('/infrastructure')
+def infrastructure():
+    """Infrastructure visualization page"""
+    return render_template('infrastructure.html')
+
 def run_workflow_async(company_name):
     """Run the financial workflow asynchronously"""
     global workflow_status
