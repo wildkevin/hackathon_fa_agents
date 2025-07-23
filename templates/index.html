@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <style>
         #logs {
-            height: 400px;
+            height: 300px;
             overflow-y: scroll;
             background-color: #2e2e2e;
             color: #ffffff;
@@ -43,10 +46,167 @@
             margin-top: 20px;
         }
         .reports-section {
-            margin-top: 30px;
+            margin-top: 20px;
             padding: 20px;
             background-color: #f8f9fa;
             border-radius: 8px;
+        }
+        
+        /* Infrastructure visualization styles */
+        #network-container {
+            height: 450px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 8px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-size: 0.8rem;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid #333;
+        }
+        
+        .split-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .analysis-panel {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .infrastructure-panel {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        @media (max-width: 1023px) {
+            .split-layout {
+                flex-direction: column;
+            }
+            .infrastructure-panel {
+                margin-top: 30px;
+            }
+        }
+        
+        .infrastructure-card {
+            position: sticky;
+            top: 20px;
+        }
+        
+        /* System Monitor styles */
+        .monitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        /* Enhanced dynamic network animations */
+        @keyframes dataFlow {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -50; }
+        }
+        
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.25); opacity: 0.75; }
+        }
+        
+        @keyframes nodeGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)); }
+            50% { filter: drop-shadow(0 0 20px currentColor); }
+        }
+        
+        @keyframes continuousFlow {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -60; }
+        }
+        
+        /* Enhanced edge styles with continuous flow */
+        .vis-network svg .vis-edge.active {
+            stroke-dasharray: 12, 6;
+            animation: dataFlow 1.2s linear infinite;
+            stroke-width: 4px;
+        }
+        
+        .vis-network svg .vis-edge.continuous {
+            stroke-dasharray: 8, 8;
+            animation: continuousFlow 1.5s linear infinite;
+            stroke-width: 3px;
+            opacity: 0.8;
+        }
+        
+        .vis-network svg .vis-node.processing {
+            animation: nodePulse 1.5s ease-in-out infinite, nodeGlow 2s ease-in-out infinite;
+        }
+        
+        .vis-network svg .vis-node.glowing {
+            animation: nodeGlow 2s ease-in-out infinite;
+        }
+        
+        .monitor-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .monitor-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .monitor-label {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .monitor-orchestrator .monitor-value { color: #667eea; }
+        .monitor-agents .monitor-value { color: #48c774; }
+        .monitor-plugins .monitor-value { color: #ffdd57; }
+        .monitor-data .monitor-value { color: #f14668; }
+        .monitor-reports .monitor-value { color: #00d1b2; }
+        
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .reports-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
         }
     </style>
 </head>
@@ -68,7 +228,7 @@
                 </a>
                 <a class="navbar-item" href="/infrastructure">
                     <span class="icon">
-                        <i class="fas fa-project-diagram"></i>
+                        <i class="fas fa-sitemap"></i>
                     </span>
                     <span>Infrastructure</span>
                 </a>
@@ -85,16 +245,126 @@
         </div>
     </section>
 
-    <section class="section">
+    <!-- System Monitor Section -->
+    <section class="section" style="padding-top: 2rem; padding-bottom: 1rem;">
         <div class="container">
-            <!-- Status Card -->
+            <h2 class="title is-3" style="margin-bottom: 1.5rem; text-align: center;">System Status Monitor</h2>
+            <div class="monitor-grid">
+                <div class="monitor-card monitor-orchestrator">
+                    <div class="monitor-value" id="orchestratorCount">1</div>
+                    <div class="monitor-label">Orchestrator</div>
+                </div>
+                <div class="monitor-card monitor-agents">
+                    <div class="monitor-value" id="agentCount">6</div>
+                    <div class="monitor-label">Active Agents</div>
+                </div>
+                <div class="monitor-card monitor-plugins">
+                    <div class="monitor-value" id="pluginCount">3</div>
+                    <div class="monitor-label">Plugins</div>
+                </div>
+                <div class="monitor-card monitor-data">
+                    <div class="monitor-value" id="dataSourceCount">2</div>
+                    <div class="monitor-label">Data Sources</div>
+                </div>
+                <div class="monitor-card monitor-reports">
+                    <div class="monitor-value" id="reportCount">0</div>
+                    <div class="monitor-label">Generated Reports</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Specifications Section -->
+    <section class="section" style="padding-bottom: 1rem;">
+        <div class="container">
             <div class="card">
                 <div class="card-header">
                     <p class="card-header-title">
-                        <span id="statusIndicator" class="status-indicator status-idle"></span>
-                        <span id="statusText">Idle</span>
+                        <i class="fas fa-users"></i>
+                        <span style="margin-left: 10px;">Agent Specifications</span>
                     </p>
                 </div>
+                <div class="card-content">
+                    <div class="columns is-multiline">
+                        <div class="column is-half">
+                            <div class="box">
+                                <h4 class="title is-6">Financial Data Retrieval Agent</h4>
+                                <p class="subtitle is-7">Collects financial data from multiple sources</p>
+                                <div class="tags">
+                                    <span class="tag is-light">Data Collection</span>
+                                    <span class="tag is-light">API Integration</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-half">
+                            <div class="box">
+                                <h4 class="title is-6">YoY Growth Analysis Agent</h4>
+                                <p class="subtitle is-7">Analyzes year-over-year growth patterns</p>
+                                <div class="tags">
+                                    <span class="tag is-light">Growth Analysis</span>
+                                    <span class="tag is-light">Trend Analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-half">
+                            <div class="box">
+                                <h4 class="title is-6">Profitability Analysis Agent</h4>
+                                <p class="subtitle is-7">Evaluates profit margins and efficiency</p>
+                                <div class="tags">
+                                    <span class="tag is-light">Profitability</span>
+                                    <span class="tag is-light">Efficiency</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-half">
+                            <div class="box">
+                                <h4 class="title is-6">Risk Assessment Agent</h4>
+                                <p class="subtitle is-7">Identifies and quantifies financial risks</p>
+                                <div class="tags">
+                                    <span class="tag is-light">Risk Analysis</span>
+                                    <span class="tag is-light">Volatility</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-half">
+                            <div class="box">
+                                <h4 class="title is-6">Market Comparison Agent</h4>
+                                <p class="subtitle is-7">Compares performance against market benchmarks</p>
+                                <div class="tags">
+                                    <span class="tag is-light">Benchmarking</span>
+                                    <span class="tag is-light">Comparison</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-half">
+                            <div class="box">
+                                <h4 class="title is-6">Report Generation Agent</h4>
+                                <p class="subtitle is-7">Compiles analysis into comprehensive reports</p>
+                                <div class="tags">
+                                    <span class="tag is-light">Report Generation</span>
+                                    <span class="tag is-light">Visualization</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="split-layout">
+                <!-- Analysis Panel -->
+                <div class="analysis-panel">
+                    <!-- Status Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="card-header-title">
+                                <span id="statusIndicator" class="status-indicator status-idle"></span>
+                                <span id="statusText">Idle</span>
+                            </p>
+                        </div>
                 <div class="card-content">
                     <div class="columns">
                         <div class="column">
@@ -147,13 +417,54 @@
                     <pre id="logs">Waiting for workflow to start...</pre>
                 </div>
             </div>
-
-            <!-- Reports Section -->
-            <div class="reports-section">
-                <h3 class="title is-4">Generated Reports</h3>
-                <div id="reportsList">
-                    <p class="has-text-grey">Loading reports...</p>
                 </div>
+                
+                <!-- Infrastructure Panel -->
+                <div class="infrastructure-panel">
+                    <div class="card infrastructure-card">
+                        <div class="card-header">
+                            <p class="card-header-title">
+                                <i class="fas fa-project-diagram"></i>
+                                <span style="margin-left: 10px;">System Architecture</span>
+                            </p>
+                        </div>
+                        <div class="card-content">
+                            <div class="legend">
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #667eea;"></div>
+                                    <span>Orchestrator</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #48c774;"></div>
+                                    <span>Agents</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #ffdd57;"></div>
+                                    <span>Plugins</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #f14668;"></div>
+                                    <span>Data</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #00d1b2;"></div>
+                                    <span>Output</span>
+                                </div>
+                            </div>
+                            <div id="network-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generated Reports Section -->
+    <section class="section" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="title is-3" style="text-align: center; margin-bottom: 2rem;">Generated Reports</h2>
+            <div class="reports-grid" id="reportsList">
+                <p class="has-text-grey" style="grid-column: 1 / -1; text-align: center;">Loading reports...</p>
             </div>
         </div>
     </section>
@@ -176,34 +487,50 @@
                 $('#progressText').text(text);
             }
 
+            // Update system monitor
+            function updateMonitor() {
+                // These could be updated from real API calls in production
+                $('#orchestratorCount').text(isRunning ? '1' : '1');
+                $('#agentCount').text(isRunning ? '6' : '6');
+                $('#pluginCount').text('3');
+                $('#dataSourceCount').text('2');
+                
+                // Update report count from API
+                $.get('/api/reports', function(data) {
+                    $('#reportCount').text(data.reports.length);
+                }).fail(function() {
+                    $('#reportCount').text('0');
+                });
+            }
+
             // Load reports
             function loadReports() {
                 $.get('/api/reports', function(data) {
                     var reportsHtml = '';
                     if (data.reports.length === 0) {
-                        reportsHtml = '<p class="has-text-grey">No reports available yet.</p>';
+                        reportsHtml = '<p class="has-text-grey" style="grid-column: 1 / -1; text-align: center;">No reports available yet.</p>';
                     } else {
-                        reportsHtml = '<div class="columns is-multiline">';
                         data.reports.forEach(function(report) {
                             var date = new Date(report.created).toLocaleString();
                             reportsHtml += `
-                                <div class="column is-one-third">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <p class="title is-6">${report.name}</p>
-                                            <p class="subtitle is-7">${date}</p>
-                                            <div class="buttons">
-                                                <button class="button is-small is-info view-report" data-report="${report.name}">View</button>
-                                                <a href="/api/reports/${report.name}/download" class="button is-small is-success">Download</a>
-                                            </div>
+                                <div class="reports-card">
+                                    <div class="card-content">
+                                        <h4 class="title is-6">${report.name}</h4>
+                                        <p class="subtitle is-7">${date}</p>
+                                        <div class="buttons">
+                                            <button class="button is-small is-info view-report" data-report="${report.name}">View</button>
+                                            <a href="/api/reports/${report.name}/download" class="button is-small is-success">Download</a>
                                         </div>
                                     </div>
                                 </div>
                             `;
                         });
-                        reportsHtml += '</div>';
                     }
                     $('#reportsList').html(reportsHtml);
+                    updateMonitor(); // Update monitor when reports change
+                }).fail(function() {
+                    $('#reportsList').html('<p class="has-text-grey" style="grid-column: 1 / -1; text-align: center;">Failed to load reports.</p>');
+                    updateMonitor();
                 });
             }
 
@@ -214,7 +541,12 @@
             });
 
             socket.on('log_update', function(data) {
-                $('#logs').append(data.message + '\n');
+                // Remove timestamp from log messages
+                var cleanMessage = data.message.replace(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} - /, '');
+                // Also remove other common timestamp formats
+                cleanMessage = cleanMessage.replace(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] /, '');
+                cleanMessage = cleanMessage.replace(/^\d{2}:\d{2}:\d{2} /, '');
+                $('#logs').append(cleanMessage + '\n');
                 $('#logs').scrollTop($('#logs')[0].scrollHeight);
             });
 
@@ -225,6 +557,8 @@
                 $('#startBtn').prop('disabled', true);
                 $('#stopBtn').prop('disabled', false);
                 updateProgress(10, 'Initializing agents...');
+                // Start real workflow animation
+                startWorkflowAnimation();
             });
 
             socket.on('workflow_completed', function(data) {
@@ -234,6 +568,8 @@
                 $('#startBtn').prop('disabled', false);
                 $('#stopBtn').prop('disabled', true);
                 loadReports();
+                // Stop workflow animation and resume demo
+                stopWorkflowAnimation();
             });
 
             socket.on('workflow_error', function(data) {
@@ -242,6 +578,8 @@
                 $('#progressSection').hide();
                 $('#startBtn').prop('disabled', false);
                 $('#stopBtn').prop('disabled', true);
+                // Stop workflow animation and resume demo
+                stopWorkflowAnimation();
             });
 
             // Button events
@@ -295,7 +633,303 @@
 
             // Load reports on page load
             loadReports();
+            
+            // Initialize infrastructure visualization
+            initializeInfrastructureVisualization();
         });
+        
+        // Global network variables
+        var network;
+        var nodes;
+        var edges;
+        var animationInterval;
+        var currentStep = 0;
+        
+        function initializeInfrastructureVisualization() {
+            var container = document.getElementById('network-container');
+            
+            // Define nodes with dynamic states
+            nodes = new vis.DataSet([
+                // Orchestrator
+                {id: 'orchestrator', label: 'Standard Magentic\nManager', color: '#667eea', shape: 'box', size: 30, status: 'idle'},
+                
+                // Agents
+                {id: 'data_agent', label: 'Financial Data\nRetrieval Agent', color: '#48c774', shape: 'ellipse', size: 25, status: 'idle'},
+                {id: 'yoy_agent', label: 'YoY Growth\nAnalysis Agent', color: '#48c774', shape: 'ellipse', size: 25, status: 'idle'},
+                {id: 'profit_agent', label: 'Profitability\nAnalysis Agent', color: '#48c774', shape: 'ellipse', size: 25, status: 'idle'},
+                {id: 'risk_agent', label: 'Risk Assessment\nAgent', color: '#48c774', shape: 'ellipse', size: 25, status: 'idle'},
+                {id: 'market_agent', label: 'Market Comparison\nAgent', color: '#48c774', shape: 'ellipse', size: 25, status: 'idle'},
+                {id: 'report_agent', label: 'Report Generation\nAgent', color: '#48c774', shape: 'ellipse', size: 25, status: 'idle'},
+                
+                // Plugins
+                {id: 'calculator', label: 'Calculator\nPlugin', color: '#ffdd57', shape: 'diamond', size: 20, status: 'idle'},
+                {id: 'yoy_calc', label: 'YoY Calculator\nPlugin', color: '#ffdd57', shape: 'diamond', size: 20, status: 'idle'},
+                {id: 'file_plugin', label: 'File Management\nPlugin', color: '#ffdd57', shape: 'diamond', size: 20, status: 'idle'},
+                
+                // Data Sources
+                {id: 'financial_data', label: 'Financial Data\nAPIs', color: '#f14668', shape: 'database', size: 20, status: 'idle'},
+                {id: 'market_data', label: 'Market Data\nSources', color: '#f14668', shape: 'database', size: 20, status: 'idle'},
+                
+                // Output
+                {id: 'reports', label: 'Generated\nReports', color: '#00d1b2', shape: 'star', size: 25, status: 'idle'}
+            ]);
+            
+            // Define edges with dynamic states
+            edges = new vis.DataSet([
+                // Orchestrator to agents
+                {id: 'orch_data', from: 'orchestrator', to: 'data_agent', arrows: 'to', active: false},
+                {id: 'orch_yoy', from: 'orchestrator', to: 'yoy_agent', arrows: 'to', active: false},
+                {id: 'orch_profit', from: 'orchestrator', to: 'profit_agent', arrows: 'to', active: false},
+                {id: 'orch_risk', from: 'orchestrator', to: 'risk_agent', arrows: 'to', active: false},
+                {id: 'orch_market', from: 'orchestrator', to: 'market_agent', arrows: 'to', active: false},
+                {id: 'orch_report', from: 'orchestrator', to: 'report_agent', arrows: 'to', active: false},
+                
+                // Data sources to agents
+                {id: 'fin_data', from: 'financial_data', to: 'data_agent', arrows: 'to', active: false},
+                {id: 'market_data_flow', from: 'market_data', to: 'market_agent', arrows: 'to', active: false},
+                
+                // Agent interconnections
+                {id: 'data_yoy', from: 'data_agent', to: 'yoy_agent', arrows: 'to', active: false},
+                {id: 'data_profit', from: 'data_agent', to: 'profit_agent', arrows: 'to', active: false},
+                {id: 'data_risk', from: 'data_agent', to: 'risk_agent', arrows: 'to', active: false},
+                {id: 'data_market', from: 'data_agent', to: 'market_agent', arrows: 'to', active: false},
+                
+                // Agents to plugins
+                {id: 'yoy_calc_flow', from: 'yoy_agent', to: 'yoy_calc', arrows: 'to', active: false},
+                {id: 'profit_calc', from: 'profit_agent', to: 'calculator', arrows: 'to', active: false},
+                {id: 'risk_calc', from: 'risk_agent', to: 'calculator', arrows: 'to', active: false},
+                
+                // Analysis to report
+                {id: 'yoy_report', from: 'yoy_agent', to: 'report_agent', arrows: 'to', active: false},
+                {id: 'profit_report', from: 'profit_agent', to: 'report_agent', arrows: 'to', active: false},
+                {id: 'risk_report', from: 'risk_agent', to: 'report_agent', arrows: 'to', active: false},
+                {id: 'market_report', from: 'market_agent', to: 'report_agent', arrows: 'to', active: false},
+                
+                // Report generation
+                {id: 'report_file', from: 'report_agent', to: 'file_plugin', arrows: 'to', active: false},
+                {id: 'final_report', from: 'report_agent', to: 'reports', arrows: 'to', active: false}
+            ]);
+            
+            // Create network
+            var data = {nodes: nodes, edges: edges};
+            var options = {
+                physics: {
+                    enabled: true,
+                    stabilization: {iterations: 100}
+                },
+                layout: {
+                    hierarchical: {
+                        enabled: true,
+                        levelSeparation: 120,
+                        nodeSpacing: 100,
+                        treeSpacing: 200,
+                        blockShifting: true,
+                        edgeMinimization: true,
+                        parentCentralization: true,
+                        direction: 'DU',
+                        sortMethod: 'directed'
+                    }
+                },
+                nodes: {
+                    font: {
+                        size: 10,
+                        color: '#333'
+                    },
+                    borderWidth: 2,
+                    shadow: {
+                        enabled: true,
+                        color: 'rgba(0,0,0,0.2)',
+                        size: 10,
+                        x: 2,
+                        y: 2
+                    }
+                },
+                edges: {
+                    color: '#666',
+                    width: 2,
+                    shadow: true,
+                    smooth: {
+                        enabled: true,
+                        type: 'continuous',
+                        roundness: 0.5
+                    },
+                    arrows: {
+                        to: {
+                            enabled: true,
+                            scaleFactor: 1.2
+                        }
+                    }
+                },
+                interaction: {
+                    hover: true,
+                    tooltipDelay: 200,
+                    selectConnectedEdges: false
+                }
+            };
+            
+            network = new vis.Network(container, data, options);
+            
+            // Add click handlers for nodes
+            network.on('click', function(params) {
+                if (params.nodes.length > 0) {
+                    var nodeId = params.nodes[0];
+                    var node = nodes.get(nodeId);
+                    console.log('Clicked on:', node.label);
+                }
+            });
+            
+            // Stabilize the network after initial load
+            network.once('stabilizationIterationsDone', function() {
+                network.setOptions({physics: {enabled: false}});
+                // Start demo animation if not running
+                if (!isRunning) {
+                    startDemoAnimation();
+                }
+            });
+        }
+        
+        // Demo animation sequence when idle
+        function startDemoAnimation() {
+            if (animationInterval) clearInterval(animationInterval);
+            
+            var demoSequence = [
+                // Step 1: Data collection
+                {nodes: ['financial_data', 'market_data'], edges: ['fin_data', 'market_data_flow']},
+                // Step 2: Orchestrator activation
+                {nodes: ['orchestrator'], edges: ['orch_data', 'orch_market']},
+                // Step 3: Data processing
+                {nodes: ['data_agent'], edges: ['data_yoy', 'data_profit', 'data_risk', 'data_market']},
+                // Step 4: Analysis agents
+                {nodes: ['yoy_agent', 'profit_agent', 'risk_agent', 'market_agent'], edges: ['yoy_calc_flow', 'profit_calc', 'risk_calc']},
+                // Step 5: Plugins
+                {nodes: ['calculator', 'yoy_calc'], edges: []},
+                // Step 6: Report compilation
+                {nodes: ['report_agent'], edges: ['yoy_report', 'profit_report', 'risk_report', 'market_report']},
+                // Step 7: Final output
+                {nodes: ['file_plugin', 'reports'], edges: ['report_file', 'final_report']}
+            ];
+            
+            var step = 0;
+            animationInterval = setInterval(function() {
+                // Clear previous animations
+                resetVisualizationState();
+                
+                // Apply current step animation
+                if (step < demoSequence.length) {
+                    animateStep(demoSequence[step]);
+                    step++;
+                } else {
+                    step = 0; // Reset to beginning
+                }
+            }, 2000); // Change step every 2 seconds
+        }
+        
+        // Real workflow animation
+        function startWorkflowAnimation() {
+            if (animationInterval) clearInterval(animationInterval);
+            resetVisualizationState();
+            
+            // Real-time workflow steps based on actual progress
+            var workflowSteps = [
+                {nodes: ['orchestrator'], edges: [], delay: 500},
+                {nodes: ['financial_data', 'market_data'], edges: ['fin_data', 'market_data_flow'], delay: 1000},
+                {nodes: ['data_agent'], edges: ['orch_data'], delay: 1500},
+                {nodes: ['yoy_agent', 'profit_agent', 'risk_agent', 'market_agent'], 
+                 edges: ['data_yoy', 'data_profit', 'data_risk', 'data_market', 'orch_yoy', 'orch_profit', 'orch_risk', 'orch_market'], delay: 2000},
+                {nodes: ['calculator', 'yoy_calc'], edges: ['yoy_calc_flow', 'profit_calc', 'risk_calc'], delay: 3000},
+                {nodes: ['report_agent'], edges: ['yoy_report', 'profit_report', 'risk_report', 'market_report', 'orch_report'], delay: 4000},
+                {nodes: ['file_plugin', 'reports'], edges: ['report_file', 'final_report'], delay: 5000}
+            ];
+            
+            workflowSteps.forEach(function(step, index) {
+                setTimeout(function() {
+                    animateStep(step);
+                }, step.delay);
+            });
+        }
+        
+        function stopWorkflowAnimation() {
+            if (animationInterval) clearInterval(animationInterval);
+            resetVisualizationState();
+            // Resume demo animation
+            setTimeout(startDemoAnimation, 1000);
+        }
+        
+        function animateStep(step) {
+            // Animate nodes with enhanced pulsing and glowing
+            step.nodes.forEach(function(nodeId) {
+                var node = nodes.get(nodeId);
+                if (node) {
+                    var updatedNode = Object.assign({}, node);
+                    updatedNode.shadow = {
+                        enabled: true,
+                        color: updatedNode.color,
+                        size: 18,
+                        x: 0,
+                        y: 0
+                    };
+                    updatedNode.borderWidth = 4;
+                    updatedNode.scaling = {
+                        min: 1,
+                        max: 1.3
+                    };
+                    nodes.update(updatedNode);
+                    
+                    // Apply CSS classes for animations
+                    setTimeout(function() {
+                        var nodeElement = document.querySelector('[data-id="' + nodeId + '"]');
+                        if (nodeElement) {
+                            nodeElement.classList.add('processing', 'glowing');
+                        }
+                    }, 100);
+                }
+            });
+            
+            // Animate edges with continuous flow
+            step.edges.forEach(function(edgeId) {
+                var edge = edges.get(edgeId);
+                if (edge) {
+                    var updatedEdge = Object.assign({}, edge);
+                    updatedEdge.color = {color: '#ff6b6b', highlight: '#ff4757'};
+                    updatedEdge.width = 5;
+                    updatedEdge.dashes = [12, 8];
+                    edges.update(updatedEdge);
+                    
+                    // Apply CSS classes for continuous flow animation
+                    setTimeout(function() {
+                        var edgeElement = document.querySelector('[data-from="' + edge.from + '"][data-to="' + edge.to + '"]');
+                        if (edgeElement) {
+                            edgeElement.classList.add('active', 'continuous');
+                        }
+                    }, 100);
+                }
+            });
+        }
+        
+        function resetVisualizationState() {
+            // Reset all nodes
+            var allNodes = nodes.get();
+            allNodes.forEach(function(node) {
+                node.shadow = {
+                    enabled: true,
+                    color: 'rgba(0,0,0,0.2)',
+                    size: 10,
+                    x: 2,
+                    y: 2
+                };
+                node.borderWidth = 2;
+            });
+            nodes.update(allNodes);
+            
+            // Reset all edges
+            var allEdges = edges.get();
+            allEdges.forEach(function(edge) {
+                edge.color = '#666';
+                edge.width = 2;
+                edge.dashes = false;
+            });
+            edges.update(allEdges);
+        }
     </script>
 </body>
 </html>
